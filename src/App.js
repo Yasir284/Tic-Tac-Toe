@@ -86,7 +86,7 @@ function App() {
   };
   return (
     <>
-      <div className=" border-solid border-2 border-white w-64 rounded-md m-3">
+      <div className=" bg-black border-white rounded-md m-3 mb-16 shadow-lg shadow-[rgba(0,0,0,0.19)]">
         <h1 className="text-4xl text-center font-extrabold py-4">
           Tic Tac Toe
         </h1>

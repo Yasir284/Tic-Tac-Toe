@@ -1,7 +1,6 @@
 body {
   height: 100vh;
-  background: linear-gradient(90deg, #4c0033, #790252, #af0171, #e80f88)
-    no-repeat;
+  background-color: #0f3d3e;
   color: #fff;
   overflow: hidden;
 }
