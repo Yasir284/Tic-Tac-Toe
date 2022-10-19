@@ -19,6 +19,7 @@ function App() {
   };
 
   const checkIsWinner = () => {
+    let draw = itemArray.every((item) => item !== "empty");
     if (
       itemArray[0] !== "empty" &&
       itemArray[0] === itemArray[1] &&
@@ -67,10 +68,7 @@ function App() {
       itemArray[2] === itemArray[6]
     ) {
       setWinMeaasge(`${itemArray[2].toUpperCase()} WON`);
-    }
-
-    let draw = itemArray.every((item) => item !== "empty");
-    if (draw === true && !winMessage) {
+    } else if (draw === true && !winMessage) {
       setWinMeaasge("It's a Draw");
     }
   };
