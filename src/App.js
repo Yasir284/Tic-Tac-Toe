@@ -6,7 +6,64 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 
+import { motion, AnimatePresence } from "framer-motion";
+
 const itemArray = new Array(9).fill("empty");
+
+// Animation Varients
+const containerVarient = {
+  hidden: {
+    opacity: 0,
+    y: "-100vh",
+  },
+  visible1: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.3,
+      ease: "easeOut",
+      type: "spring",
+      mass: 0.5,
+      damping: 8,
+    },
+  },
+  visible2: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      ease: "easeOut",
+      type: "spring",
+      mass: 0.5,
+      damping: 6,
+    },
+  },
+};
+
+const boxVarient = {
+  whileTap: {
+    scale: [1, 0, 1],
+    transition: {
+      ease: "easeOut",
+    },
+  },
+};
+
+const headingVarient = {
+  hidden: {
+    opacity: 0,
+    scale: 0,
+  },
+  visible: {
+    opacity: 1,
+    scale: [2, 1],
+    transition: {
+      duration: 0.5,
+    },
+  },
+  exit: {
+    opacity: 0,
+  },
+};
 
 function App() {
   const [isCross, setIsCross] = useState(false);
@@ -84,45 +141,77 @@ function App() {
 
     checkIsWinner();
   };
+
   return (
     <>
-      <div className=" bg-black border-white rounded-md m-3 mb-16 shadow-lg shadow-[rgba(0,0,0,0.19)]">
+      <motion.div
+        className="bg-[rgba(3,11,11,0.5)] shadow-inner shadow-[rgba(8,8,8,0.5)] rounded-md m-3 mb-16"
+        variants={containerVarient}
+        initial="hidden"
+        animate="visible1"
+      >
         <h1 className="text-4xl text-center font-extrabold py-4">
           Tic Tac Toe
         </h1>
-      </div>
+      </motion.div>
 
-      <div className="flex flex-col items-center">
-        <ToastContainer position="bottom-center" />
+      <motion.div
+        className="flex flex-col items-center"
+        variants={containerVarient}
+        initial="hidden"
+        animate="visible2"
+      >
+        <ToastContainer position="top-left" />
         {winMessage ? (
-          <div>
-            <h1 className="text-4xl font-semibold text-center">{winMessage}</h1>
-            <button
-              onClick={reloadGame}
-              className="w-72 font-semibold text-white bg-[#07bc0c]  rounded-lg my-4 py-2 transition-all duration-200 ease-in-out  active:scale-75"
+          <AnimatePresence exitBeforeEnter>
+            <motion.div
+              key={winMessage}
+              variants={headingVarient}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
             >
-              Reset Game
-            </button>
-          </div>
+              <h1 className="text-4xl font-semibold text-center">
+                {winMessage}
+              </h1>
+              <button
+                onClick={reloadGame}
+                className="w-72 font-semibold text-white bg-[#07bc0c]  rounded-lg my-4 py-2 transition-all duration-200 ease-in-out  active:scale-75"
+              >
+                Reset Game
+              </button>
+            </motion.div>
+          </AnimatePresence>
         ) : (
-          <div>
-            <h1 className="h-28 text-4xl font-semibold">
-              {!isCross ? "Cross" : "Circle"} turns
-            </h1>
-          </div>
+          <AnimatePresence exitBeforeEnter>
+            <motion.div
+              key={isCross}
+              variants={headingVarient}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              <h1 className="h-28 text-4xl font-semibold">
+                {!isCross ? "Cross" : "Circle"}
+                <Icons name={!isCross ? "cross" : "circle"} /> turns
+              </h1>
+            </motion.div>
+          </AnimatePresence>
         )}
 
         <div className="grid grid-cols-3 justify-center">
           {itemArray.map((item, index) => (
-            <div
+            <motion.div
+              variants={boxVarient}
+              whileTap="whileTap"
               onClick={() => changeItem(index)}
               className="p-8 border-solid border-white border-2"
             >
               <Icons name={item} />
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }
