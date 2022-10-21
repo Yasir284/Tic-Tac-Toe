@@ -37,6 +37,13 @@ const containerVarient = {
       damping: 6,
     },
   },
+  hover: {
+    boxShadow: "none",
+    transition: {
+      ease: "easeInOut",
+      duration: 0.2,
+    },
+  },
 };
 
 const boxVarient = {
@@ -145,10 +152,11 @@ function App() {
   return (
     <>
       <motion.div
-        className="bg-[rgba(3,11,11,0.5)] shadow-inner shadow-[rgba(8,8,8,0.5)] rounded-md m-3 mb-16"
+        className="bg-[rgba(3,11,11,0.5)] shadow-xl shadow-[rgba(8,8,8,0.5)] rounded-md m-3 mb-16"
         variants={containerVarient}
         initial="hidden"
         animate="visible1"
+        whileHover="hover"
       >
         <h1 className="text-4xl text-center font-extrabold py-4">
           Tic Tac Toe
@@ -199,13 +207,13 @@ function App() {
           </AnimatePresence>
         )}
 
-        <div className="grid grid-cols-3 justify-center">
+        <div className="grid grid-cols-3 rounded-md bg-[rgba(3,11,11,0.5)] shadow-xl shadow-[rgba(8,8,8,0.5)] justify-center">
           {itemArray.map((item, index) => (
             <motion.div
               variants={boxVarient}
               whileTap="whileTap"
               onClick={() => changeItem(index)}
-              className="p-8 border-solid border-white border-2"
+              className="p-8 border-solid border-2 border-[rgba(0,0,0,0.1)]"
             >
               <Icons name={item} />
             </motion.div>
