@@ -1,18 +1,16 @@
 import { FaTimes, FaPen, FaRegCircle } from "react-icons/fa";
-// import { motion } from "framer-motion";
-
 import React from "react";
 
-const Icons = ({ name }) => {
+const Icons = ({ name, className }) => {
   switch (name) {
     case "circle":
-      return <FaRegCircle className="inline text-3xl" />;
+      return <FaRegCircle className={`inline text-3xl ${className}`} />;
 
     case "cross":
-      return <FaTimes className="inline text-3xl" />;
+      return <FaTimes className={`inline text-3xl ${className}`} />;
 
     default:
-      return <FaPen className="inline text-3xl" />;
+      return <FaPen className={`inline text-3xl ${className}`} />;
   }
 };
 

@@ -89,49 +89,49 @@ function App() {
       itemArray[0] === itemArray[1] &&
       itemArray[0] === itemArray[2]
     ) {
-      setWinMeaasge(`${itemArray[0].toUpperCase()} WON`);
+      setWinMeaasge(`${itemArray[0].toUpperCase()} WON 🎉`);
     } else if (
       itemArray[3] !== "empty" &&
       itemArray[3] === itemArray[4] &&
       itemArray[3] === itemArray[5]
     ) {
-      setWinMeaasge(`${itemArray[3].toUpperCase()} WON`);
+      setWinMeaasge(`${itemArray[3].toUpperCase()} WON 🎉`);
     } else if (
       itemArray[6] !== "empty" &&
       itemArray[6] === itemArray[7] &&
       itemArray[6] === itemArray[8]
     ) {
-      setWinMeaasge(`${itemArray[6].toUpperCase()} WON`);
+      setWinMeaasge(`${itemArray[6].toUpperCase()} WON 🎉`);
     } else if (
       itemArray[0] !== "empty" &&
       itemArray[0] === itemArray[3] &&
       itemArray[0] === itemArray[6]
     ) {
-      setWinMeaasge(`${itemArray[0].toUpperCase()} WON`);
+      setWinMeaasge(`${itemArray[0].toUpperCase()} WON 🎉`);
     } else if (
       itemArray[1] !== "empty" &&
       itemArray[1] === itemArray[4] &&
       itemArray[1] === itemArray[7]
     ) {
-      setWinMeaasge(`${itemArray[1].toUpperCase()} WON`);
+      setWinMeaasge(`${itemArray[1].toUpperCase()} WON 🎉`);
     } else if (
       itemArray[2] !== "empty" &&
       itemArray[2] === itemArray[5] &&
       itemArray[2] === itemArray[8]
     ) {
-      setWinMeaasge(`${itemArray[2].toUpperCase()} WON`);
+      setWinMeaasge(`${itemArray[2].toUpperCase()} WON 🎉`);
     } else if (
       itemArray[0] !== "empty" &&
       itemArray[0] === itemArray[4] &&
       itemArray[0] === itemArray[8]
     ) {
-      setWinMeaasge(`${itemArray[0].toUpperCase()} WON`);
+      setWinMeaasge(`${itemArray[0].toUpperCase()} WON 🎉`);
     } else if (
       itemArray[2] !== "empty" &&
       itemArray[2] === itemArray[4] &&
       itemArray[2] === itemArray[6]
     ) {
-      setWinMeaasge(`${itemArray[2].toUpperCase()} WON`);
+      setWinMeaasge(`${itemArray[2].toUpperCase()} WON 🎉`);
     } else if (draw === true && !winMessage) {
       setWinMeaasge("It's a Draw");
     }
@@ -179,12 +179,12 @@ function App() {
               animate="visible"
               exit="exit"
             >
-              <h1 className="text-4xl font-semibold text-center">
+              <h1 className="text-4xl font-semibold text-center text-green-500 rounded-md shadow-inner shadow-black p-2">
                 {winMessage}
               </h1>
               <button
                 onClick={reloadGame}
-                className="w-72 font-semibold text-white bg-[#07bc0c]  rounded-lg my-4 py-2 transition-all duration-200 ease-in-out  active:scale-75"
+                className="w-72 font-semibold text-white bg-green-500  rounded-lg my-4 py-2 transition-all duration-200 ease-in-out  active:scale-75"
               >
                 Reset Game
               </button>
@@ -199,9 +199,14 @@ function App() {
               animate="visible"
               exit="exit"
             >
-              <h1 className="h-28 text-4xl font-semibold">
-                {!isCross ? "Cross" : "Circle"}
-                <Icons name={!isCross ? "cross" : "circle"} /> turns
+              <h1 className="mb-16 p-3 text-4xl font-semibold rounded-md shadow-inner shadow-black">
+                <pre>
+                  <Icons
+                    name={!isCross ? "cross" : "circle"}
+                    className="text-yellow-300"
+                  />{" "}
+                  {!isCross ? "Cross" : "Circle"} turns
+                </pre>
               </h1>
             </motion.div>
           </AnimatePresence>
